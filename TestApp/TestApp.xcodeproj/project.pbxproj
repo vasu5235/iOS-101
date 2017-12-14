@@ -97,11 +97,9 @@
 		9017CD811FE1A78300E6570F /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
-				9017CD821FE1A78300E6570F /* AppDelegate.swift */,
+				9017CDB01FE1AA2A00E6570F /* Supporting Files */,
 				9017CD841FE1A78300E6570F /* ViewController.swift */,
 				9017CD861FE1A78300E6570F /* Main.storyboard */,
-				9017CD891FE1A78300E6570F /* Assets.xcassets */,
-				9017CD8B1FE1A78300E6570F /* LaunchScreen.storyboard */,
 				9017CD8E1FE1A78300E6570F /* Info.plist */,
 			);
 			path = TestApp;
@@ -123,6 +121,16 @@
 				9017CDA41FE1A78300E6570F /* Info.plist */,
 			);
 			path = TestAppUITests;
+			sourceTree = "<group>";
+		};
+		9017CDB01FE1AA2A00E6570F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9017CD821FE1A78300E6570F /* AppDelegate.swift */,
+				9017CD891FE1A78300E6570F /* Assets.xcassets */,
+				9017CD8B1FE1A78300E6570F /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -14,8 +14,10 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var displayOutput: UILabel!
     private var brain = CalculatorBrain()
+    private var firstNumEntered = false
+    var exprString2 = ""
     var exprString = ""
-    private var userInMiddleOfTyping = false
+    var operatorSelected = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +42,40 @@ class ViewController: UIViewController {
     //touchUnary - C, sqrt
     @IBAction func touchUnary(_ sender: UIButton){
         let doubleValue = Double(displayOutput.text!)!
-        let result = brain.unaryOperation(val: doubleValue,symbol: sender.currentTitle!)
-        displayOutput.text = String(format: "%.3f",result)
+        let result = brain.unaryOperation(val: doubleValue,symbol: sender.currentTitle!,currExpr:exprString2)
+        displayOutput.text = result.0
+        exprString2 = ""
+        firstNumEntered = false
     }
     
+    //Computation button
+    @IBAction func touchEqualsTo(_ sender: UIButton) {
+        exprString = exprString + displayOutput.text!
+        let result = brain.binaryOperation(exprString:exprString,opSelected:operatorSelected)
+        displayOutput.text = String(format:"%.0f",result)
+        exprString = ""
+    }
     //touchBinary - +, xor, -, mult, div
     @IBAction func touchBinary(_ sender: UIButton) {
         //ADD HERE: Append the symbol to the exprString variable
+        exprString = displayOutput.text!
+        firstNumEntered = false
+        exprString = exprString + sender.currentTitle!
+        print("op ",exprString)
+        operatorSelected = sender.currentTitle!
     }
     
     //touchNum - you know what.
     @IBAction func touchNum(_ sender: UIButton) {
-        displayOutput.text = sender.currentTitle!
+        if !firstNumEntered{
+            displayOutput.text = sender.currentTitle!
+            firstNumEntered = true
+        }
+        else{
+            let currentText = displayOutput.text!
+            displayOutput.text = currentText + sender.currentTitle!
+        }
+        exprString2 = displayOutput.text!
         //ADD HERE: Append to the exprString variable.
     }
 }
